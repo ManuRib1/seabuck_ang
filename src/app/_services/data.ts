@@ -84,7 +84,9 @@ export class DataService {
     { id_image: 12, nom_image: "sweet-caramel", alt_image: "sweet-caramel", url_image: "sweet-caramel.png", slug_image: "sweet-caramel" },
     { id_image: 13, nom_image: "sweet-strawberry", alt_image: "sweet-strawberry", url_image: "sweet-strawberry.png", slug_image: "sweet-strawberry" },
     { id_image: 14, nom_image: "white-chocolate", alt_image: "white-chocolate", url_image: "white-chocolate.png", slug_image: "white-chocolate" },
-    { id_image: 15, nom_image: "Donut", alt_image: "Donut", url_image: "donut.png", slug_image: "donut" }
+    { id_image: 15, nom_image: "Donut", alt_image: "Donut", url_image: "donut.png", slug_image: "donut" },
+    { id_image: 16, nom_image: "Donut rasberry", alt_image: "Donut-rasberry", url_image: "donut-ras.png", slug_image: "donut-rasberry" },
+
   ];
 
   // Données Ingrédients
@@ -265,6 +267,17 @@ export class DataService {
       prix: 7.20,
       ingredients: [7, 3], // Chocolat blanc, Crème
       alimentations: []
+    },
+    {
+      id_prod: 15,
+      nom_prod: "Rasberry donut",
+      slug_prod: "rasberry-donut-red",
+      img_prod: 16,
+      id_cat_prod: 4,
+      couleur_prod: "rgb(233, 108, 135)",
+      prix: 7.50,
+      ingredients: [1, 19, 10], // Myrtilles, Sirop de myrtille, Crème de lait d'amande
+      alimentations: [1] // Végan
     }
   ];
 

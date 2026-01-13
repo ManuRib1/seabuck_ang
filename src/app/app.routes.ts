@@ -5,6 +5,8 @@ import { CategorieDetailComponent } from './_pages/categorie-detail/categorie-de
 import { ProduitDetailComponent } from './_pages/produit-detail/produit-detail';
 import { LoginComponent } from './_pages/login/login';
 import { RegisterComponent } from './_pages/register/register';
+import { PanierComponent } from './_pages/panier/panier';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -14,5 +16,6 @@ export const routes: Routes = [
   { path: 'produit/:id', component: ProduitDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'panier', component: PanierComponent },
   { path: '**', redirectTo: '/accueil' }
 ];

@@ -1,0 +1,104 @@
+<div class="panier-container">
+  <div class="container">
+    <div class="header">
+      <h1>🛒 Mon Panier</h1>
+      <p class="subtitle">Gérez vos articles avant de finaliser votre commande</p>
+    </div>
+
+    <!-- Message de succès -->
+    <div class="success-overlay" *ngIf="showSuccessMessage">
+      <div class="success-card">
+        <div class="success-icon">✓</div>
+        <h2>Merci pour votre commande !</h2>
+        <p>Votre commande a été validée avec succès.</p>
+        <p class="secondary">Vous allez recevoir un email de confirmation.</p>
+      </div>
+    </div>
+
+    <!-- Panier vide -->
+    <div class="panier-vide" *ngIf="items.length === 0 && !showSuccessMessage">
+      <div class="vide-icon">🛒</div>
+      <h2>Votre panier est vide</h2>
+      <p>Découvrez nos délicieux produits et ajoutez-les à votre panier !</p>
+      <a routerLink="/accueil" class="btn btn-primary">Découvrir nos produits</a>
+    </div>
+
+    <!-- Liste des produits -->
+    <div class="panier-content" *ngIf="items.length > 0">
+      <div class="panier-items">
+        <div class="panier-item" *ngFor="let item of items">
+          <div class="item-image">
+            <img [src]="getImageUrl(item)" [alt]="item.produit.nom_prod">
+          </div>
+          
+          <div class="item-info">
+            <h3>{{ item.produit.nom_prod }}</h3>
+            <p class="item-prix">{{ item.produit.prix }}€ / unité</p>
+          </div>
+
+          <div class="item-quantite">
+            <label>Quantité :</label>
+            <input 
+              type="number" 
+              [value]="item.quantite" 
+              (change)="modifierQuantite(item.produit.id_prod, $event)"
+              min="0"
+              class="quantite-input">
+          </div>
+
+          <div class="item-total">
+            <p class="total-label">Total</p>
+            <p class="total-prix">{{ (item.produit.prix! * item.quantite).toFixed(2) }}€</p>
+          </div>
+
+          <button 
+            class="btn-supprimer" 
+            (click)="retirerProduit(item.produit.id_prod)"
+            title="Retirer du panier">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Résumé -->
+      <div class="panier-resume">
+        <h3>Résumé de la commande</h3>
+        
+        <div class="resume-ligne">
+          <span>Nombre d'articles</span>
+          <span>{{ panierService.getNombreItems() }}</span>
+        </div>
+
+        <div class="resume-ligne">
+          <span>Sous-total</span>
+          <span>{{ panierService.getTotal().toFixed(2) }}€</span>
+        </div>
+
+        <div class="resume-ligne">
+          <span>Livraison</span>
+          <span>Gratuite</span>
+        </div>
+
+        <div class="resume-total">
+          <span>Total</span>
+          <span>{{ panierService.getTotal().toFixed(2) }}€</span>
+        </div>
+
+        <button class="btn btn-valider" (click)="validerCommande()">
+          Valider la commande
+        </button>
+
+        <button class="btn btn-vider" (click)="viderPanier()">
+          Vider le panier
+        </button>
+
+        <a routerLink="/accueil" class="btn-continuer">
+          ← Continuer mes achats
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,15 +9,32 @@
       <div class="col-md-7">
         <h1>Sunday<br><span>{{ produit.nom_prod }}</span></h1>
         <p class="prix-produit" *ngIf="produit.prix">{{ produit.prix }}€</p>
-        
+
         <!-- Alimentations -->
         <div class="alimentations" *ngIf="alimentations.length > 0">
           <span *ngFor="let ali of alimentations" class="badge bg-success">
             {{ ali.nom_ali }}
           </span>
         </div>
-        
-        <button class="btn rounded-pill col-md-6 bg-green">Ajouter au panier</button>
+
+        <!-- Message de succès -->
+        <div class="alert alert-success alert-panier" *ngIf="showSuccessMessage">
+          ✓ Produit ajouté au panier avec succès !
+        </div>
+
+        <!-- Sélecteur de quantité -->
+        <div class="quantite-selector">
+          <label>Quantité :</label>
+          <div class="quantite-controls">
+            <button type="button" class="btn-quantite" (click)="diminuerQuantite()">-</button>
+            <span class="quantite-value">{{ quantite }}</span>
+            <button type="button" class="btn-quantite" (click)="augmenterQuantite()">+</button>
+          </div>
+        </div>
+
+        <button (click)="ajouterAuPanier()" class="btn rounded-pill col-md-6 bg-green">
+          🛒 Ajouter au panier
+        </button>
       </div>
     </div>
   </div>
@@ -33,20 +50,22 @@
         <ul class="composition">
           <li *ngFor="let ingredient of ingredients">
             {{ ingredient.nom_ingre }}
-            <svg *ngIf="ingredient.allergies_ingre" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-              <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0zM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0"/>
+            <svg *ngIf="ingredient.allergies_ingre" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+              fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
+              <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0zM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0" />
             </svg>
           </li>
         </ul>
-        
+
         <div class="allergene-info" *ngIf="hasAllergenes()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-lg" viewBox="0 0 16 16">
-            <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0zM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-exclamation-lg" viewBox="0 0 16 16">
+            <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0zM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0" />
           </svg>
           Représente un risque allergène
         </div>
       </div>
-      
+
       <div class="col-md-6">
         <div *ngIf="alimentations.length > 0">
           <h2>Convient à une alimentation</h2>
@@ -55,7 +74,7 @@
           </ul>
           <p class="mt-3" *ngIf="alimentations[0]">{{ alimentations[0].desc_ali }}</p>
         </div>
-        
+
         <div *ngIf="categorie" class="mt-4">
           <h2>Catégorie</h2>
           <ul class="composition">

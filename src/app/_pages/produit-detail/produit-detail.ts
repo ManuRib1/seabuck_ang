@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { DataService } from '../../_services/data';
+import { PanierService } from '../../_services/panier';
 import { Produit } from '../../_interfaces/produit.interface';
 import { Categorie } from '../../_interfaces/categorie.interface';
 import { Ingredient } from '../../_interfaces/ingredient.interface';
@@ -23,11 +24,14 @@ export class ProduitDetailComponent implements OnInit, AfterViewInit, OnDestroy 
   alimentations: Alimentation[] = [];
   autresProduits: Produit[] = [];
   private slickInitialized = false;
+  quantite: number = 1;
+  showSuccessMessage: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private panierService: PanierService
   ) {}
 
   ngOnInit(): void {
@@ -44,17 +48,14 @@ export class ProduitDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     if (this.produit) {
       this.categorie = this.dataService.getCategorieById(this.produit.id_cat_prod);
       
-      // Charger les ingrédients
       if (this.produit.ingredients) {
         this.ingredients = this.dataService.getIngredientsByIds(this.produit.ingredients);
       }
       
-      // Charger les alimentations
       if (this.produit.alimentations) {
         this.alimentations = this.dataService.getAlimentationsByIds(this.produit.alimentations);
       }
       
-      // Charger les autres produits
       this.autresProduits = this.dataService.getProduits()
         .filter(p => p.id_prod !== id);
     }
@@ -78,7 +79,7 @@ export class ProduitDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     setTimeout(() => {
       if (typeof $ !== 'undefined' && $.fn.slick) {
         $('.produits-slider-detail').slick({
-          dots: false,
+          dots: true,
           infinite: true,
           speed: 300,
           slidesToShow: 4,
@@ -121,6 +122,28 @@ export class ProduitDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     }
   }
 
+  ajouterAuPanier(): void {
+    if (this.produit) {
+      this.panierService.ajouterProduit(this.produit, this.quantite);
+      this.showSuccessMessage = true;
+      
+      // Masquer le message après 3 secondes
+      setTimeout(() => {
+        this.showSuccessMessage = false;
+      }, 3000);
+    }
+  }
+
+  augmenterQuantite(): void {
+    this.quantite++;
+  }
+
+  diminuerQuantite(): void {
+    if (this.quantite > 1) {
+      this.quantite--;
+    }
+  }
+
   getImageUrl(produit: Produit): string {
     return this.dataService.getImageUrl(produit.img_prod);
   }
@@ -129,7 +152,6 @@ export class ProduitDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     return this.produit?.couleur_prod || '#667eea';
   }
 
-  // Ajouter cette nouvelle méthode
   hasAllergenes(): boolean {
     return this.ingredients.some(ingredient => ingredient.allergies_ingre);
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../_services/auth';
+import { PanierService } from '../../_services/panier';
 import { User } from '../../_interfaces/user.interface';
 
 @Component({
@@ -14,7 +15,10 @@ import { User } from '../../_interfaces/user.interface';
 export class HeaderComponent implements OnInit {
   currentUser: User | null = null;
 
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    public panierService: PanierService
+  ) {}
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();

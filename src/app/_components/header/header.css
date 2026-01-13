@@ -67,3 +67,25 @@
     text-align: center;
   }
 }
+
+
+/* Badge panier */
+.nav-link {
+  position: relative;
+}
+
+.badge-panier {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
