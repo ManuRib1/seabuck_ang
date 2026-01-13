@@ -79,7 +79,7 @@ export class ProduitDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     setTimeout(() => {
       if (typeof $ !== 'undefined' && $.fn.slick) {
         $('.produits-slider-detail').slick({
-          dots: true,
+          dots: false,
           infinite: true,
           speed: 300,
           slidesToShow: 4,
