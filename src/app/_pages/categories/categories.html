@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="header">
+    <h1>📂 Catégories</h1>
+    <p class="subtitle">Explorez nos différentes catégories de produits</p>
+  </div>
+
+  <div class="categories-grid">
+    <a [routerLink]="['/categorie', categorie.id_cat]" class="categorie-card" *ngFor="let categorie of categories">
+      <div class="categorie-image">
+        <img [src]="getImageUrl(categorie)" [alt]="categorie.nom_cat">
+        <div class="overlay">
+          <span class="voir-plus">Voir les produits →</span>
+        </div>
+      </div>
+      <div class="categorie-content">
+        <h3>{{ categorie.nom_cat }}</h3>
+        <p>{{ categorie.desc_cat }}</p>
+      </div>
+    </a>
+  </div>
+</div>

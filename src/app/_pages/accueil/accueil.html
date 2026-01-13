@@ -1,0 +1,37 @@
+<!-- INTRO-->
+<div id="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>It's not just a sunday<br>It's <span>Seabuck</span></h1>
+        <p>Découvrez notre collection exceptionnelle de glaces artisanales. Des saveurs uniques pour tous les goûts.</p>
+        <a href="#produits" class="btn rounded-pill col-md-6 bg-green">Découvrir</a>
+      </div>
+      <div class="col-md-4">
+        <img src="imgs/products.png" class="img-fluid" alt="Produits Seabuck">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="animation">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2152.81 2835.65">
+    <g id="Calque_2" data-name="Calque 2">
+      <g id="Calque_2-2" data-name="Calque 2">
+        <path class="back" d="M1.51.5s294.7,218.36,298.05,506.36-298,432-298,1078.32S1177,2835.15,1177,2835.15h975.36V.5Z"/>
+      </g>
+    </g>
+  </svg>	
+</div>
+<!-- FIN INTRO-->
+
+<!-- Produits diaporama -->
+<div id="produits" class="produits-slider">
+  <div *ngFor="let produit of produits" class="produit row" [style.background-color]="produit.couleur_prod">
+    <img [src]="getImageUrl(produit)" class="imgProduct" [alt]="produit.nom_prod">
+    <h2>{{ produit.nom_prod }}</h2>
+    <p class="prix" *ngIf="produit.prix">{{ produit.prix }}€</p>
+    <a [routerLink]="['/produit', produit.id_prod]" class="btn btn-light rounded-pill col-md-12">Voir</a>
+  </div>
+</div>
+<!-- FIN produits diaporama-->

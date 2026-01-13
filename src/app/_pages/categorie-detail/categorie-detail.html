@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="breadcrumb">
+    <a routerLink="/categories">← Retour aux catégories</a>
+  </div>
+
+  <div class="header" *ngIf="categorie">
+    <h1>{{ categorie.nom_cat }}</h1>
+    <p class="subtitle">{{ categorie.desc_cat }}</p>
+  </div>
+
+  <div class="produits-section" *ngIf="produits.length > 0">
+    <h2>Produits de cette catégorie</h2>
+    <div class="produits-grid">
+      <div class="produit-card" *ngFor="let produit of produits">
+        <div class="produit-image">
+          <img [src]="getImageUrl(produit)" [alt]="produit.nom_prod">
+        </div>
+        <div class="produit-content">
+          <h3>{{ produit.nom_prod }}</h3>
+          <p class="prix" *ngIf="produit.prix">{{ produit.prix }}€</p>
+          <div class="produit-footer">
+            <a [routerLink]="['/produit', produit.id_prod]" class="btn-detail">
+              Voir détails
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-produits" *ngIf="produits.length === 0">
+    <p>Aucun produit disponible dans cette catégorie.</p>
+  </div>
+</div>

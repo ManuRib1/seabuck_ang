@@ -1,0 +1,88 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <img src="imgs/logo-seabuck.svg" alt="Seabuck" class="logo">
+      <h2>Inscription</h2>
+      <p>Créez votre compte Seabuck</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="register-form">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input 
+              type="text" 
+              id="prenom" 
+              class="form-control" 
+              [(ngModel)]="registerData.prenom"
+              name="prenom"
+              placeholder="Jean"
+              required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input 
+              type="text" 
+              id="nom" 
+              class="form-control" 
+              [(ngModel)]="registerData.nom"
+              name="nom"
+              placeholder="Dupont"
+              required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          class="form-control" 
+          [(ngModel)]="registerData.email"
+          name="email"
+          placeholder="votre@email.com"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input 
+          type="password" 
+          id="password" 
+          class="form-control" 
+          [(ngModel)]="registerData.password"
+          name="password"
+          placeholder="••••••••"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirmer le mot de passe</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          class="form-control" 
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          placeholder="••••••••"
+          required>
+      </div>
+
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">
+        S'inscrire
+      </button>
+    </form>
+
+    <div class="register-footer">
+      <p>Vous avez déjà un compte ? <a routerLink="/login">Se connecter</a></p>
+    </div>
+  </div>
+</div>

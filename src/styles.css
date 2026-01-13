@@ -1,1 +1,199 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  position: relative;
+}
+h1 {
+  font-size: 100px;
+  font-weight: 100;
+  /*
+    mix-blend-mode: difference;
+    */
+}
+h1 span {
+  color: #193a38;
+  font-weight: 800;
+}
+.bg-green {
+  background-color: #193a38 !important;
+  color: #fff;
+}
+.bg-green:hover {
+  background-color: #e67e22 !important;
+  color: #fff;
+}
+.navbar {
+  transition: all ease-in-out 1s;
+}
+.navbar a.nav-link.active {
+  color: #193a38 !important;
+}
+.scroll {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+}
+.form-control.me-2 {
+  border: none;
+  box-shadow: none;
+  border-bottom: 2px solid #193a38;
+  border-radius: 0px;
+  background: none;
+}
+.btn-search {
+  cursor: pointer;
+  color: transparent!important;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.icon-search:before {
+  color: #193a38;
+}
+#intro {
+  height: 100vh;
+  padding-top: 100px;
+}
+#intro .container .row {
+  z-index: 1;
+}
+@keyframes cardAnim {
+  0%,
+  100% {
+    d: path('M1.51.5s294.7,218.36,298.05,506.36-298,432-298,1078.32S1177,2835.15,1177,2835.15h975.36V.5Z');
+  }
+  30% {
+    d: path('M305.27.5S-2.82,218.86.53,506.86s304.74,432,304.74,1078.32,1175.44,1250,1175.44,1250h975.36V.5Z');
+  }
+  60% {
+    d: path('M1.51.5s294.7,218.36,298.05,506.36-298,958.88-298,1605.2S1177,2835.15,1177,2835.15h975.36V.5Z');
+  }
+}
+.animation {
+  width: 50%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 0;
+}
+.back {
+  animation: cardAnim;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-duration: 20s;
+  animation-timing-function: ease-in-out;
+}
+.back {
+  /*fill:#E2B05B;
+fill:#DC9239;
+stroke:#fff;*/
+  fill: #eae9e5;
+  backdrop-filter: blur(10px);
+}
+.slick-slider {
+  /*overflow: visible!important;*/
+  width: 100%;
+  overflow-x: hidden !important;
+  padding: 163px 0px;
+}
+.slick-list {
+  padding-top: 50px!important;
+  padding-bottom: 50px!important;
+  overflow: visible!important;
+}
+.produit,
+.categorie {
+  background-color: #eae9e5 !important;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  transition: all ease-in-out 0.3s;
+  background-image: url("/assets/imgs/texture.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  height: 500px!important;
+}
+.produit .imgProduct,
+.categorie .imgProduct {
+  width: 100%;
+  margin-top: -100px;
+  transition: all ease-in-out 0.3s;
+  z-index: 1;
+}
+.produit h2,
+.categorie h2 {
+  color: #193a38;
+  text-transform: capitalize;
+  z-index: 2;
+  transition: all ease-in-out 0.3s;
+}
+.slick-current + div,
+.categorie:hover {
+  color: #fff;
+  background-color: #193a38 !important;
+  transform: scale(1.2);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.slick-current + div h2,
+.categorie:hover h2 {
+  color: #fff;
+  text-transform: capitalize;
+}
+.slick-current + div .imgProduct,
+.categorie:hover .imgProduct {
+  transform: scale(1.5);
+}
+.slick-next,
+.slick-prev {
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background: none;
+  border: 25px solid #fff;
+  opacity: 0.5;
+  z-index: 3;
+  top: 210px;
+  padding: 0px;
+  transition: all ease-in-out 0.3s;
+}
+.slick-next:hover,
+.slick-prev:hover {
+  opacity: 1;
+}
+.slick-next {
+  left: 47.5%;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+.slick-prev {
+  left: 24%;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+.intro_prod {
+  background: #eae9e5;
+  background: linear-gradient(122deg, #eae9e5 25%, #ffffff 25%);
+}
+.img-prod {
+  position: absolute;
+  z-index: 6;
+  transform: rotate(-10deg);
+}
+.rond {
+  width: 80%;
+  border-radius: 50%;
+  position: absolute;
+  top: 30px;
+  left: 10%;
+  padding-top: 80%;
+  z-index: 0;
+}
+.composition svg {
+  fill: red;
+}

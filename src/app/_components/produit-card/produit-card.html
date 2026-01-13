@@ -1,0 +1,14 @@
+<div class="produit-card">
+  <div class="produit-image">
+    <img [src]="getImageUrl()" [alt]="produit.nom_prod">
+  </div>
+  <div class="produit-content">
+    <h3>{{ produit.nom_prod }}</h3>
+    <p class="prix" *ngIf="produit.prix">{{ produit.prix }}€</p>
+    <div class="produit-footer">
+      <a [routerLink]="['/produit', produit.id_prod]" class="btn-detail">
+        Voir détails
+      </a>
+    </div>
+  </div>
+</div>
